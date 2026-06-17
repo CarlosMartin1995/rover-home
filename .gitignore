@@ -1,0 +1,15 @@
+# PlatformIO
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# VS Code (auto-generado por la extension de PlatformIO)
+.vscode/
+!.vscode/extensions.json
+
+# Claude Code - config local/personal del harness
+.claude/settings.local.json
+
+# Misc
+*.bin
+*.elf
