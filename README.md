@@ -22,7 +22,7 @@ rover-home/
 │   ├── main.cpp              # setup + loop (orquesta los módulos)
 │   ├── config.h              # pinout, PWM, MOTOR_INVERT, credenciales AP
 │   ├── motor.h / motor.cpp   # TB6612FNG: drive, coast/brake, watchdog
-│   └── webserver.h/.cpp      # AP WiFi + HTTP + página D-pad
+│   └── web_server.h/.cpp     # AP WiFi + HTTP + página D-pad
 ├── reference/                # firmware monolítico congelado (fuente de verdad)
 └── docs/                     # arquitectura.md
 ```

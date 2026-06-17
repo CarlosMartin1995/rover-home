@@ -125,7 +125,7 @@ rover_firmware/
 │   ├── main.cpp              # setup + dispatch; en Fase 2 arranca las tasks FreeRTOS
 │   ├── config.h              # pines, constantes PWM, motorInvert, credenciales AP
 │   ├── motor.h / motor.cpp   # abstracción TB6612FNG: motorWrite, drive, coastAll, brakeAll
-│   ├── webserver.h/.cpp      # AP WiFi + servidor HTTP + página D-pad (PROGMEM)
+│   ├── web_server.h/.cpp     # AP WiFi + servidor HTTP + página D-pad (PROGMEM)
 │   └── (Fase 2) pid.cpp, imu.cpp, comm_uart.cpp, state.cpp
 ├── reference/
 │   └── rover_wifi_ap_v1_tb6612.ino   # firmware funcional original (no compilar, es la fuente de verdad)
@@ -133,6 +133,8 @@ rover_firmware/
 ```
 
 Orden sugerido de trabajo: **primero** separar `config.h` + `motor.*` y dejar el control de motores andando igual que el monolítico; **después** sacar el webserver a su módulo; **recién entonces** sumar features nuevas (PID, IMU, UART).
+
+> **Nota (Windows):** el módulo del servidor se llama **`web_server.*`**, NO `webserver.*`. El filesystem de Windows es *case-insensitive*: un `webserver.h` propio en `src/` colisiona con el `<WebServer.h>` del framework Arduino y lo opaca (`'WebServer' does not name a type`), rompiendo el build. **No lo renombres de vuelta a `webserver`.**
 
 ---
 

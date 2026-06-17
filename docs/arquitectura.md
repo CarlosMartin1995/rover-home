@@ -14,7 +14,7 @@ contexto completo del proyecto.
 | `src/main.cpp` | `setup()` + `loop()`. Solo orquesta: inicializa los módulos y, en cada vuelta, atiende el webserver y corre el watchdog. |
 | `src/config.h` | **Fuente única** de pinout, constantes PWM, `MOTOR_INVERT[]`, credenciales del AP y tiempos de seguridad. Debe coincidir con la tabla de hardware del CLAUDE.md. |
 | `src/motor.h/.cpp` | Abstracción de los 4 motores sobre 2× TB6612FNG: `motorWrite`, `drive` (skid steering), `coastAll`, `brakeAll`, y el **watchdog** (`motorsUpdate`). El estado (`motorsActive`, `lastCmdMs`) queda encapsulado. |
-| `src/webserver.h/.cpp` | Access Point WiFi + servidor HTTP + página D-pad (PROGMEM). Traduce los endpoints a llamadas del módulo `motor`. |
+| `src/web_server.h/.cpp` | Access Point WiFi + servidor HTTP + página D-pad (PROGMEM). Traduce los endpoints a llamadas del módulo `motor`. (Se llama `web_server`, no `webserver`, para no colisionar con el `<WebServer.h>` del framework en el filesystem case-insensitive de Windows.) |
 
 ## Flujo
 
@@ -49,8 +49,8 @@ control nuevo debe conservar esta protección.**
 | `motorWrite` / `drive` / `coastAll` | `motor.cpp` (+ `brakeAll`, ya descrito en CLAUDE.md) |
 | `motorsActive` / `lastCmdMs` | estado `static` en `motor.cpp` |
 | watchdog en `loop()` | `motorsUpdate()` en `motor.cpp` |
-| `PAGE`, `handleRoot`, `handleMove`, AP setup | `webserver.cpp` |
-| `currentSpeed` | `static` en `webserver.cpp` |
+| `PAGE`, `handleRoot`, `handleMove`, AP setup | `web_server.cpp` |
+| `currentSpeed` | `static` en `web_server.cpp` |
 
 ## Próximo (Fase 2)
 
